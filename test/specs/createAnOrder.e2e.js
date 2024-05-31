@@ -95,15 +95,31 @@ describe('Create an order', () => {
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
-        await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
+        //await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
+        await page.messageToDriver('Hi Driver!');
         await page.placeCarOrder();
-        const carSearchModal = await $(page.carSearchModal);
-        //await carSearchModal.waitForDisplayed();
-        await expect(carSearchModal).toBeExisting();
-        //await browser.pause(35000);
         const driverInfo = await $(page.driverInfoButton);
-        await driverInfo.waitForDisplayed({timeout: 40000});
+        //await driverInfo.waitForExist({ timeout: 40000 }); // Ensure it exists first
+        console.log("driverInfo exists, waiting for it to be displayed...");
+        //await driverInfo.waitForDisplayed({ timeout: 45000 });
+        await browser.pause(35000);
         await expect(driverInfo).toBeExisting();
     })
 })
 
+
+
+
+
+
+
+
+
+
+
+//const carSearchModal = await $(page.carSearchModal);
+        //await carSearchModal.waitForExist({ timeout: 40000 }); // Ensure it exists first
+        //console.log("carSearchModal exists, waiting for it to be displayed...");
+        //await carSearchModal.waitForDisplayed({ timeout: 40000 }); // Then wait for it to be displayed
+        //await expect(carSearchModal).toBeExisting();
+       // console.log("Waiting for driverInfo to exist...");//

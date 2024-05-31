@@ -26,7 +26,7 @@ module.exports = {
     blanketAndHandkerchiefsButton: 'body > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(3) > div:nth-child(2) > div:nth-child(3) > div:nth-child(4) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > span:nth-child(2)',
     iceCreamPlusCounter: 'div[class="r-group"] div:nth-child(1) div:nth-child(1) div:nth-child(2) div:nth-child(1) div:nth-child(3)',
     orderCarButton: 'button[class="smart-button"]',
-    driverInfoButton: '.order-subbody',
+    driverInfoButton: 'div*=The driver will arrive',
 
     // Modals
     phoneNumberModal: '.modal',

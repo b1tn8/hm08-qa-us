@@ -1,0 +1,6 @@
+**Method For Test Case Creation**
+
+-write down all the test scenarios in a text file, in plain language
+--create a function name for each test scenario
+---break down the test scenarios into individual steps to completion
+----convert steps into code

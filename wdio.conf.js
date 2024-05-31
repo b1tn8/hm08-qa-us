@@ -22,13 +22,14 @@ exports.config = {
         browserName: 'firefox',
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
-            args: ['-headless']
+            args: ['-headless'],
+            binary: '/Applications/Firefox.app/Contents/MacOS/firefox'
         }
     }
 ],
     logLevel: 'error',
     bail: 0,
-    baseUrl: 'https://e629ed6b-4969-442b-987e-087e81eb10ca.serverhub.practicum-services.com',
+    baseUrl: 'https://cnt-20116ae8-999f-421a-986d-195a2f7b9ace.containerhub.tripleten-services.com',
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,

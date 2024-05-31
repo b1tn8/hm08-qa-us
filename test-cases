@@ -1,0 +1,98 @@
+Setting the address [fillAddresses]
+    find toField element
+    input value into toField element
+    find fromField element
+    input value into fromField element
+    find call a taxi button element
+    assert that it is displayed, confirming input of addresses
+
+Selecting the Supporitve Plan [selectSupportivePlan]
+    f(x) [fillAddresses] **goes all the way to clicking on the call a taxi button**
+    wait for plan options element to be displayed?
+    find supportivePlanButton element
+    click supportivePlanButton element
+    how do I assert this one?
+
+Filling in the phone number [fillPhoneNumber]
+    find the phoneNumberButton element
+    wait for the phoneNumberButton to be displayed
+    click the phoneNumberButton
+    wait for phoneNumberModal to be displayed
+    find the phoneNumberField element
+    wait for the phoneNumberField to be displayed
+    inpute value into the phoneNumberField
+    f(x) [submitPhoneNumber]
+
+Adding a credit card [addCreditCard]
+    f(x) [fillAddresses]
+    find paymentMethodButton element
+    wait for the paymentMethodButton element to be displayed
+    click the paymentMethodButton element
+    find the paymentMethodModal element
+    wait for the paymentMethodModal element to be displayed
+    find the addCardButton element
+    click the addCardButton element
+    find the addCardModal element
+    wait for the addCardModal element to be displayed
+    find the cardNumberField element
+    input value into CardNumberField element
+    find the cvvNumberField element
+    input value into cvvNumberField element
+    find linkCardButton element
+    wait for linkCardButton element to be clickable - $(selector).isClickable()
+    click linkCardButton element
+    // how do I assert this function?
+        selector is - input id=card-1 to confirm the card has been added there should be a checkmark present on the first card
+
+Writing a message for the driver [writeDriverMessage]
+    f(x) [fillAddresses]
+    find messageToDriverField element
+    wait for the messageToDriverField element to be displayed
+    input value into the messageToDriverField element
+    // how do I assert this function?
+
+Ordering a blanket and handkerchiefs [orderBlanketAndHandkerchiefs]
+    f(x) [fillAddresses]
+    f(x) [selectSupportivePlan]
+    find blanketsAndHandkerchiefsSwitch element
+    wait for blanketsAndHandkerchiefsSwitch to be displayed
+    click blanketsAndHandkerchiefsSwitch element
+    assert that the blanketsAndHandkerchiefSwitch element is toggled on
+        maybe this? 
+            async function verifyToggleOn() {
+                const toggleCheckbox = await $('.switch input:checked'); // Combined selector
+                await expect(toggleCheckbox).toBeDisplayed(); // Assert checkbox is displayed (checked)
+            }
+
+Ordering 2 ice creams [orderIceCream]
+    //f(x) [fillAddresses]
+    //f(x) [selectSupportivePlan]
+    find iceCreamCounterPlusButton element
+    wait for iceCreamCounterPlusButton element to be displayed
+    click iceCreamCounterPlusButton element 
+    assert ice cream counter went up by 1
+    click iceCreamCounterPlusButton element
+    assert ice cream counter went up by 1
+        create a loop for the above?
+    assert counter-value is 2
+    //need to think about this one more to account for different value options between just 'ice cream' 'chocolate' and 'strawberry'
+        **maybe create a function for ordering ice cream in general and then write a script for ordering 2 ice creams?**
+
+The car search modal appears **this doesnt need to be a separate function** or could it? [triggerCarSearchModal]
+    f(x) [fillAddresses]
+    f(x) [addCreditCard]
+    find orderCarButton element
+    wait for orderCarButton element to be clickable
+    click orderCarButton element
+    find carSearchModal element
+    wait for carSearchModal element to be displayed
+    assert the carSearchModal is displayed 
+
+Waiting for driver info to appear in the modal
+    f(x) [triggerCarSearchModal]
+    find carSearchTimer element
+    wait for carSearchTimer element to be displayed
+    -- use a test pause here until it's completed?
+    find driverInfo element
+    wait for driverInfo elmenet to be displayed
+    assert driverInfo element is displayed

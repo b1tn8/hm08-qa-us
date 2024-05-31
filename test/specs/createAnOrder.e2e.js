@@ -100,8 +100,9 @@ describe('Create an order', () => {
         const carSearchModal = await $(page.carSearchModal);
         //await carSearchModal.waitForDisplayed();
         await expect(carSearchModal).toBeExisting();
-        await browser.pause(35000);
+        //await browser.pause(35000);
         const driverInfo = await $(page.driverInfoButton);
+        await driverInfo.waitForDisplayed({timeout: 40000});
         await expect(driverInfo).toBeExisting();
     })
 })

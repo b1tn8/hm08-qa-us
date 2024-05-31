@@ -24,9 +24,10 @@ jobs:
         firefox-version: 'latest'
     - name: Run npm install 
       run: npm i
-    - name: Set Firefox Binary Environment Variable
+    - name: Determine Firefox Binary
       run: |
         FIREFOX_BINARY=$(which firefox)
+        echo "FIREFOX_BINARY=${FIREFOX_BINARY}"
         echo "FIREFOX_BINARY=${FIREFOX_BINARY}" >> $GITHUB_ENV
     - name: Run eslint
       run: npm run lint

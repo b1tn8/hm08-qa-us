@@ -18,10 +18,16 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '18.x'
+    - name: Setup Firefox
+      uses: browser-actions/setup-firefox@v1
+      with:
+        firefox-version: 'latest'
     - name: Run npm install 
       run: npm i
     - name: Set Firefox Binary Environment Variable
-      run: echo "FIREFOX_BINARY=/usr/bin/firefox" >> $GITHUB_ENV
+      run: |
+        FIREFOX_BINARY=$(which firefox)
+        echo "FIREFOX_BINARY=${FIREFOX_BINARY}" >> $GITHUB_ENV
     - name: Run eslint
       run: npm run lint
     - name: Run tests

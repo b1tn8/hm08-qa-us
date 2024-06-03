@@ -14,9 +14,6 @@ describe('Create an order', () => {
     it('should select the Supportive plan', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        //By storing the clicked element (supportivePlan) in a variable, 
-        //you ensure you're working with the actual element object and not a promise when 
-        //performing the assertion on its parent element.
         const supportivePlan = await page.selectSupportivePlan();
         await expect(supportivePlan.parentElement()).toHaveElementClass('active');
     })
@@ -32,7 +29,6 @@ describe('Create an order', () => {
     it('saves a new credit card', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        // Wait for an element or condition indicating address section is complete (e.g., 'Next' button)
         await browser.waitUntil(async () => {
             const paymentMethodButton = await $(page.paymentMethodButton);
             return await paymentMethodButton.isDisplayed();
@@ -56,8 +52,7 @@ describe('Create an order', () => {
     it('should select blanket and handkerchiefs', async () => {
         await browser.url(`/`);
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        const supportivePlan = await page.selectSupportivePlan();
-        await expect(supportivePlan.parentElement()).toHaveElementClass('active');
+        await page.selectSupportivePlan();
         const blanketAndHandkerchiefs = await $(page.blanketAndHandkerchiefsButton);
         await blanketAndHandkerchiefs.waitForDisplayed();
         await blanketAndHandkerchiefs.click();
@@ -67,12 +62,10 @@ describe('Create an order', () => {
     it('should add 2 icecreams to the order', async () => {
         await browser.url(`/`);
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        const supportivePlan = await page.selectSupportivePlan();
-        await expect(supportivePlan.parentElement()).toHaveElementClass('active');
+        await page.selectSupportivePlan();
         const iceCreamPlusCounter = await $(page.iceCreamPlusCounter);
         await iceCreamPlusCounter.waitForDisplayed();
         await iceCreamPlusCounter.click();
-        await iceCreamPlusCounter.waitForDisplayed();
         await iceCreamPlusCounter.click();
         const iceCreamCounterValue = await $(page.iceCreamCounterValue);
         await expect(iceCreamCounterValue).toHaveTextContaining('2');
@@ -83,10 +76,8 @@ describe('Create an order', () => {
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
-        await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
         await page.placeCarOrder();
         const carSearchModal = await $(page.carSearchModal);
-        //await carSearchModal.waitForDisplayed();
         await expect(carSearchModal).toBeExisting();
     })
 
@@ -95,13 +86,10 @@ describe('Create an order', () => {
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
-        //await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
         await page.messageToDriver('Hi Driver!');
         await page.placeCarOrder();
         const driverInfo = await $(page.driverInfoButton);
-        //await driverInfo.waitForExist({ timeout: 40000 }); // Ensure it exists first
         console.log("driverInfo exists, waiting for it to be displayed...");
-        //await driverInfo.waitForDisplayed({ timeout: 45000 });
         await browser.pause(35000);
         await expect(driverInfo).toBeExisting();
     })

@@ -117,9 +117,3 @@ describe('Create an order', () => {
 
 
 
-//const carSearchModal = await $(page.carSearchModal);
-        //await carSearchModal.waitForExist({ timeout: 40000 }); // Ensure it exists first
-        //console.log("carSearchModal exists, waiting for it to be displayed...");
-        //await carSearchModal.waitForDisplayed({ timeout: 40000 }); // Then wait for it to be displayed
-        //await expect(carSearchModal).toBeExisting();
-       // console.log("Waiting for driverInfo to exist...");//
